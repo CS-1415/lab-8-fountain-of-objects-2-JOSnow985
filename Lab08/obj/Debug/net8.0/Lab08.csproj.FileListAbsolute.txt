@@ -1,0 +1,12 @@
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/bin/Debug/net8.0/Lab08.deps.json
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/bin/Debug/net8.0/Lab08.dll
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/bin/Debug/net8.0/Lab08.pdb
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/Lab08.GeneratedMSBuildEditorConfig.editorconfig
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/Lab08.AssemblyInfoInputs.cache
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/Lab08.AssemblyInfo.cs
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/Lab08.csproj.CoreCompileInputs.cache
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/Lab08.sourcelink.json
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/Lab08.dll
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/refint/Lab08.dll
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/Lab08.pdb
+/home/nobaraneko/Documents/School/CS1410/lab-8-fountain-of-objects-2-JOSnow985/Lab08/obj/Debug/net8.0/ref/Lab08.dll
