@@ -1,14 +1,18 @@
 namespace Lab08.Tests;
 
-public class Tests
+
+public class MapTests
 {
+    Map map = Map.Small;
+
     [SetUp]
     public void Setup()
     {
+        
     }
 
     [Test]
-    public void Test1()
+    public void PropertiesTest()
     {
         Assert.Pass();
     }
