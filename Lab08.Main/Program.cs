@@ -94,22 +94,6 @@ while (true)
             else
                 player.lastAction = "There's nothing to enable here...";
             break;
-        case "fire north":
-        case "shoot north":
-            player.ShootArrow('N');
-            break;
-        case "fire east":
-        case "shoot east":
-            player.ShootArrow('E');
-            break;
-        case "fire south":
-        case "shoot south":
-            player.ShootArrow('S');
-            break;
-        case "fire west":
-        case "shoot west":
-            player.ShootArrow('W');
-            break;
         case "help":
             Printer.HelpMenu();
             break;
