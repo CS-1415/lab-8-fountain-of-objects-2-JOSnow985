@@ -2,25 +2,36 @@
 
 public class Map
 {
-    public List<(Room room, int x, int y)> RoomList { get; private set; }
-    public List<List<string>> ExitsList { get; private set; }
-    // public List<Monster> MonstersList { get; private set; }
-    public static GateRoom Entrance { get; } = new();
-    public static FountainRoom Fountain { get; } = new();
-    public static Room EmptyRoom { get; } = new();
-    private static (int X, int Y) _boundary = (3, 3); // Small Map is the max dimension
-    public static (int X, int Y) Boundary => _boundary;
+    public List<(Room room, int x, int y)> SpecRoomList { get; }
+    public List<List<(string exits, bool IsClear, bool IsVisited)>> RoomData { get; }
+    public List<Monster> MonsterList { get; }
+    // private static (int X, int Y) _boundary = (3, 3); // Small Map is the max dimension
+    // public static (int X, int Y) Boundary => _boundary;
 
     public Map(List<(Room, int, int)> rooms, List<List<string>> exits)
     {
-        RoomList = rooms;
-        ExitsList = exits;
-        _boundary.X = _boundary.Y = exits.Count - 1;    // Maps are square right now but could be different later?
+        SpecRoomList = rooms;
+        RoomData = AddRoomTags(exits);
+        // _boundary.X = _boundary.Y = exits.Count - 1;    // Maps are square right now but could be different later?\
+        MonsterList = SpawnMonsters();
     }
 
     public static Map Small => new(smallMap.rooms, smallMap.exits);
     public static Map Medium => new(mediumMap.rooms, mediumMap.exits);
     public static Map Large => new(largeMap.rooms, largeMap.exits);
+    private List<Monster> SpawnMonsters()
+    {
+        return [];
+    }
+    private List<List<(string exits, bool IsClear, bool IsVisited)>> AddRoomTags(List<List<string>> exitList)
+    {
+        return [];
+    }
+
+    // Rooms that are made then placed according to map size
+    public static GateRoom Entrance { get; } = new();
+    public static FountainRoom Fountain { get; } = new();
+    public static Room EmptyRoom { get; } = new();
 
     // Small maps are 4x4, have 1 Amarok, 1 Maelstrom, 1 Pit
     private static (List<List<string>> exits, List<(Room, int x, int y)> rooms) smallMap = (
