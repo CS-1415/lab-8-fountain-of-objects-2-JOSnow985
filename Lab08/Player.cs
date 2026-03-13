@@ -17,7 +17,7 @@ public class Player
     public string lastAction = "";      // Holds the last action we took so it's easier to set this from different places
 
     // Checks if any room in the room list has matching coordinates to us, returns an empty room if not.
-    public Room CurrentRoom => Map.RoomList.Any(tuple => (tuple.x, tuple.y) == (X, Y)) ? Map.RoomList.First(tuple => (tuple.x, tuple.y) == (X, Y)).room : Map.EmptyRoom;
+    public Room CurrentRoom => Map.SpecRoomList.Any(tuple => (tuple.x, tuple.y) == (X, Y)) ? Map.SpecRoomList.First(tuple => (tuple.x, tuple.y) == (X, Y)).room : Map.EmptyRoom;
 
     public Player(Map selectedMap)
     { 
@@ -78,7 +78,7 @@ public class Player
 
     public bool Move(char dir)
     {
-        if (!Map.ExitsList[Y][X].Contains(dir))
+        if (!Map.RoomData[Y][X].exits.Contains(dir))
             return false;
         else
         {

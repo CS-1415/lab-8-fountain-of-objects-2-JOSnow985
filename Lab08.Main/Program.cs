@@ -40,7 +40,7 @@ Console.ReadKey(true);
 while (true)
 {
     Console.Clear();
-    Console.WriteLine($"Currently at: ({player.X},{player.Y})  |  Exits sensed: ({map.ExitsList[player.Y][player.X]})");
+    Console.WriteLine($"Currently at: ({player.X},{player.Y})  |  Exits sensed: ({map.RoomData[player.Y][player.X].exits})");
 
     Printer.ColorPrint(player.lastAction);
 
