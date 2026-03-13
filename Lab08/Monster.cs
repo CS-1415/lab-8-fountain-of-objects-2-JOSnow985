@@ -1,21 +1,5 @@
 ﻿namespace Lab08;
 
-// public abstract class Obstacle
-// {
-//     // Obstacles have locations
-//     public int X;
-//     public int Y;
-//     public string Feedback;
-//     public Obstacle (int x, int y, string feedback)
-//     {
-//         X = x;
-//         Y = y;
-//         Feedback = feedback;
-//     }
-
-//     public abstract void TripPlayer(Player player);         // Every Obstacle will do something different to the player
-// }
-
 public abstract class Monster
 {
     public int X;
@@ -36,15 +20,16 @@ public abstract class Monster
         Y = y;
         Feedback = s;
     }
-    public abstract void SpecialAttack(Player player);      // Instead of "tripping" that fires once, a special attack
-    public List<Item> RollInventory()
+
+    public abstract void SpecialAttack(Player player);  // Instead of "tripping" that fires once, a special attack
+    protected List<Item> RollInventory()
     {
         List<Item> itemList = [];
-        for (int i = Health; i > 0; i--)    // One loot roll per monster hp, probably poorly balanced
+        for (int i = Health; i > 0; i--)        // One loot roll per monster hp, probably poorly balanced
         {
             int roll = rng.Next(1, 101);
             if (roll >= 75)
-                itemList.Add(Upgrade.Weapon);    // 25% chance to add a weapon upgrade
+                itemList.Add(Upgrade.Weapon);   // 25% chance to add a weapon upgrade
             else if (roll <= 25)
                 itemList.Add(Upgrade.Armor);    // 25% chance to add an armor upgrade
         }
@@ -119,20 +104,3 @@ public class Rodent : Monster
         throw new NotImplementedException("This monster does not have a special attack!");
     }
 }
-
-// public class Amorak : Monster
-// {
-//     public override int AttackValue { get; protected set; } = 1;
-//     public Amorak(int x, int y) : base(x, y, "You can smell the rotten stench of an amarok nearby. ") { }
-//     public static Amorak At(int x, int y) => new(x, y);
-//     public override void SpecialAttack(Player player)          // Amarok also just kills the player and ends the game
-//     {
-//         player.Dead = true;
-//         Console.Clear();
-//         Printer.ColorPrint("The stench of the Amarok is too overwhelming, you died. Your journey ends here. ");
-//     }
-//     public override List<Item> CreateInventory()
-//     {
-        
-//     }
-// }
