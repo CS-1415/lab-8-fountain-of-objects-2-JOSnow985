@@ -8,8 +8,8 @@ public class RoomTests
     }
 
     [Test]
-    public void Test1()
+    public void Test()
     {
-        Assert.Pass();
+        Assert.Fail("No Room Tests yet!");
     }
 }
