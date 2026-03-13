@@ -40,7 +40,7 @@ Console.ReadKey(true);
 while (true)
 {
     Console.Clear();
-    Console.WriteLine($"Currently at: ({player.X},{player.Y})  |  Exits sensed: ({map.ExitsList[player.Y][player.X]})  |  Arrows Remaining: {player.RemainingArrows}");
+    Console.WriteLine($"Currently at: ({player.X},{player.Y})  |  Exits sensed: ({map.ExitsList[player.Y][player.X]})");
 
     Printer.ColorPrint(player.lastAction);
 
@@ -120,17 +120,17 @@ while (true)
     // Check if we've won first
     if (player.CurrentRoom is GateRoom && Map.Fountain.IsFountainEnabled)
         break;
-    // Then if something bad is happening
-    foreach (Obstacle obstacle in map.ObstaclesList)
-    {
-        if (player.X == obstacle.X && player.Y == obstacle.Y)
-            obstacle.TripPlayer(player);
-    }
+    // // Then if something bad is happening
+    // foreach (Obstacle obstacle in map.ObstaclesList)
+    // {
+    //     if (player.X == obstacle.X && player.Y == obstacle.Y)
+    //         obstacle.TripPlayer(player);
+    // }
     
-    if (player.Dead)
+    if (player.IsDead)
         break;
 }
-if (!player.Dead)
+if (!player.IsDead)
 {
     Console.Clear();
     Printer.ColorPrint("You've done it! The Fountain of Objects has been activated and you've escaped with your life! Good job!");
