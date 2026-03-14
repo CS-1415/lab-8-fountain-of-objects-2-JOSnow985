@@ -38,16 +38,19 @@ public class Map
     // Returns a monster spawned at the passed x, y
     private Monster RandomMonsterAt(int x, int y)
     {
-        RoomData[y][x] = (RoomData[y][x].exits, false, RoomData[y][x].IsVisited);
+        // RoomData[y][x] = (RoomData[y][x].exits, false, RoomData[y][x].IsVisited);
+        UpdateRoomDataAt(x, y);
         return Monster.rng.Next(1, 101) switch
         {
             var roll when roll <= 15 => Wizzrobe.At(x, y),                  // 15%
-            var roll when 15 < roll && roll <= 35 => Soldier.At(x, y),     // 20%
+            var roll when 15 < roll && roll <= 35 => Soldier.At(x, y),      // 20%
             var roll when 35 < roll && roll <= 40 => Drgn.At(x, y),         // 5%
             _ => Rodent.At(x, y)                                            // Remaining 60%
         };
     }
 
+    // Updates RoomData at a passed x, y, only IsClear now but could be extended
+    public void UpdateRoomDataAt(int x, int y, bool _isclear = false) => RoomData[y][x] = (RoomData[y][x].exits, _isclear, RoomData[y][x].IsVisited);
     private List<List<(string exits, bool IsClear, bool IsVisited)>> AddRoomTags(List<List<string>> exits)
     {   // Iterates through the exit list from the map and makes a new list of tuples
         // the exits and two flags that indicate if it's been visited and if a monster is there or not.
