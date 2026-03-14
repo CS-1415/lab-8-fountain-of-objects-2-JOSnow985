@@ -53,7 +53,7 @@ public class CombatTests
     public void RemoveMonsterTest()
     {
         var monster = map.MonsterList[0];
-        Combat.RemoveMonsterAt(monster.X, monster.Y);
+        Combat.RemoveMonsterAt(monster.X, monster.Y, ref map);
 
         Combat.Loot(player, soldier);
 
@@ -67,7 +67,7 @@ public class CombatTests
     [Test]
     public void CombatLoopTest()
     {
-        Combat.CombatLoop(player, soldier);
+        Combat.CombatLoop(player, soldier, ref map);
         if (player.Health <= 0 || soldier.Health <= 0)
             Assert.Pass();
         else
