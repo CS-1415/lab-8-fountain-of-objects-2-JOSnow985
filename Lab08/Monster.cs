@@ -11,7 +11,7 @@ public abstract class Monster
     public (int Attack, int Defense) MonStats;
     public bool hasSpecAtk = false;
     public List<Item> Inventory = [];
-    private static Random rng = new();
+    public static Random rng = new();
 
     public Monster(string n, int x, int y, string s)
     {

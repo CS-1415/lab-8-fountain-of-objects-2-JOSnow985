@@ -5,27 +5,63 @@ public class Map
     public List<(Room room, int x, int y)> SpecRoomList { get; }
     public List<List<(string exits, bool IsClear, bool IsVisited)>> RoomData { get; }
     public List<Monster> MonsterList { get; }
-    // private static (int X, int Y) _boundary = (3, 3); // Small Map is the max dimension
-    // public static (int X, int Y) Boundary => _boundary;
 
     public Map(List<(Room, int, int)> rooms, List<List<string>> exits)
     {
         SpecRoomList = rooms;
         RoomData = AddRoomTags(exits);
-        // _boundary.X = _boundary.Y = exits.Count - 1;    // Maps are square right now but could be different later?\
-        MonsterList = SpawnMonsters();
+        MonsterList = SpawnMonsters(exits);
     }
 
     public static Map Small => new(smallMap.rooms, smallMap.exits);
     public static Map Medium => new(mediumMap.rooms, mediumMap.exits);
     public static Map Large => new(largeMap.rooms, largeMap.exits);
-    private List<Monster> SpawnMonsters()
+    private List<Monster> SpawnMonsters(List<List<string>> exits)
     {
-        return [];
+        List<Monster> monsters = [];
+        int Y = 0;
+        int X = 0;
+        foreach (var row in exits)                  // First dimension in exits is Y
+        {
+            foreach (var column in exits)           // Next is X
+            {
+                if (Monster.rng.Next(1, 101) >= 75) // 25% chance for a monster to be placed
+                    monsters.Add(RandomMonsterAt(X, Y));
+                X++;
+            }
+            Y++;
+            X = 0;
+        }
+        return monsters;
     }
-    private List<List<(string exits, bool IsClear, bool IsVisited)>> AddRoomTags(List<List<string>> exitList)
+
+    // Returns a monster spawned at the passed x, y
+    private Monster RandomMonsterAt(int x, int y)
     {
-        return [];
+        RoomData[y][x] = (RoomData[y][x].exits, false, RoomData[y][x].IsVisited);
+        return Monster.rng.Next(1, 101) switch
+        {
+            var roll when roll <= 15 => Wizzrobe.At(x, y),                  // 15%
+            var roll when 15 < roll && roll <= 35 => Soldier.At(x, y),     // 20%
+            var roll when 35 < roll && roll <= 40 => Drgn.At(x, y),         // 5%
+            _ => Rodent.At(x, y)                                            // Remaining 60%
+        };
+    }
+
+    private List<List<(string exits, bool IsClear, bool IsVisited)>> AddRoomTags(List<List<string>> exits)
+    {   // Iterates through the exit list from the map and makes a new list of tuples
+        // the exits and two flags that indicate if it's been visited and if a monster is there or not.
+        List<List<(string exits, bool IsClear, bool IsVisited)>> taggedRooms = [];
+        foreach (var row in exits)
+        {
+            List<(string exits, bool IsClear, bool IsVisited)> taggedRow = [];
+            foreach (var col in row)
+            {
+                taggedRow.Add((col, true, false));
+            }
+            taggedRooms.Add(taggedRow);
+        }
+        return taggedRooms;
     }
 
     // Rooms that are made then placed according to map size

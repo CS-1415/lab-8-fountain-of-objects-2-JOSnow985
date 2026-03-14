@@ -14,6 +14,25 @@ public class MapTests
     }
 
     [Test]
+    public void PopulateMonsterListTest() => Assert.That(
+                                            smallMap.MonsterList,
+                                            Has.Count.GreaterThan(0),
+                                            $"Monster List Empty!"
+                                            );
+
+    [Test]
+    public void MonsterSpawnTest()
+    {
+        int monstersSpawned = 0;
+        foreach (var row in smallMap.RoomData)
+            foreach (var (_, IsClear, _) in row)
+                if (!IsClear)
+                    monstersSpawned++;
+        Console.WriteLine($"Monsters Found: {monstersSpawned}");
+        Assert.That(monstersSpawned, Is.GreaterThan(0), $"Small Map X Test Failed");
+    }
+
+    [Test]
     public void SmallMapRoomDataTest()
     {
         Assert.That(
