@@ -40,7 +40,7 @@ Console.ReadKey(true);
 while (true)
 {
     Console.Clear();
-    Console.WriteLine($"Currently at: ({player.X},{player.Y})  |  Exits sensed: ({map.RoomData[player.Y][player.X].exits})");
+    Console.WriteLine($"Currently at: ({player.X},{player.Y}) | HP: {player.Health} |  Exits sensed: ({map.RoomData[player.Y][player.X].exits})");
 
     Printer.ColorPrint(player.lastAction);
 
@@ -120,12 +120,17 @@ while (true)
     // Check if we've won first
     if (player.CurrentRoom is GateRoom && Map.Fountain.IsFountainEnabled)
         break;
-    // // Then if something bad is happening
-    // foreach (Obstacle obstacle in map.ObstaclesList)
-    // {
-    //     if (player.X == obstacle.X && player.Y == obstacle.Y)
-    //         obstacle.TripPlayer(player);
-    // }
+    // Then if something bad is happening
+    foreach (Monster monster in map.MonsterList)
+    {
+        if (player.X == monster.X && player.Y == monster.Y)
+        {
+            Combat.CombatLoop(player, monster, ref map);
+            Printer.ColorPrint("Combat has concluded, press any key to continue.");
+            Console.ReadKey();
+            break;
+        }
+    }
     
     if (player.IsDead)
         break;

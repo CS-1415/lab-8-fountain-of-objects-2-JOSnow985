@@ -4,7 +4,6 @@ public static class Combat   // Class for methods that handle combat interaction
 {
     public static void CombatLoop(Player player, Monster monster, ref Map map)
     {
-        // Print a display for combat
         if (monster.hasSpecAtk)
             if (Monster.rng.Next(1,101) > 80)
             {
@@ -14,17 +13,35 @@ public static class Combat   // Class for methods that handle combat interaction
                     return;
             }
 
-        while (player.Health > 0 && monster.Health > 0)
-            Attack(player, monster);
+        Console.Clear();
+        Printer.ColorPrint("--- Combat Encounter ---");
+        Printer.ColorPrint($"--- Player vs {monster.Name} ---");
+        Printer.ColorPrint($"--- HP: {player.Health} vs HP: {monster.Health} ---");
+        Printer.ColorPrint(monster.Feedback);
+        Console.WriteLine();
 
-        if (player.IsDead)
-            return;
-        else
+        while (player.Health > 0 && monster.Health > 0)
+        {
+            (int originalPlayerHealth, int originalMonHealth) = (player.Health, monster.Health);
+            Attack(player, monster);
+            if (originalMonHealth != monster.Health)
+                Printer.ColorPrint($"Player attacked {monster.Name} for {originalMonHealth - monster.Health}!");
+            
+            if (originalPlayerHealth != player.Health)
+                Printer.ColorPrint($"{monster.Name} attacked Player for {originalPlayerHealth - player.Health}!");
+        }
+
+        if (player.Health <= 0)
+            Printer.ColorPrint("Player has died!");
+
+        if(monster.Health <= 0)
+            Printer.ColorPrint($"{monster.Name} has died!");
+
+        if (!player.IsDead)
         {
             Loot(player, monster);
             RemoveMonsterAt(monster.X, monster.Y, ref map);
         }
-
         return;
     }
     public static void Attack(Player player, Monster monster)
