@@ -18,6 +18,7 @@ public static class Combat   // Class for methods that handle combat interaction
         Printer.ColorPrint($"--- Player vs {monster.Name} ---");
         Printer.ColorPrint($"--- HP: {player.Health} vs HP: {monster.Health} ---");
         Printer.ColorPrint(monster.Feedback);
+        Thread.Sleep(1000);
         Console.WriteLine();
 
         while (player.Health > 0 && monster.Health > 0)
@@ -26,9 +27,11 @@ public static class Combat   // Class for methods that handle combat interaction
             Attack(player, monster);
             if (originalMonHealth != monster.Health)
                 Printer.ColorPrint($"Player attacked {monster.Name} for {originalMonHealth - monster.Health}!");
-            
+            Thread.Sleep(500);
+
             if (originalPlayerHealth != player.Health)
                 Printer.ColorPrint($"{monster.Name} attacked Player for {originalPlayerHealth - player.Health}!");
+            Thread.Sleep(500);  // Combat's not instant...
         }
 
         if (player.Health <= 0)
