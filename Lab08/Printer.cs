@@ -81,12 +81,17 @@ public static class Printer
     {
         Console.Clear();
         ColorPrint("--- Your Inventory ---");
-        foreach(Item i in inventory)
+        PrintInventory(inventory);
+        ColorPrint("Press any key to return.");
+        Console.ReadKey(true);
+    }
+
+    public static void PrintInventory(List<Item> inventory)
+    {
+        foreach (Item i in inventory)
         {
             ColorPrint($"{i.Info.Name}:");
             ColorPrint($"    {i.Info.Description}");
         }
-        ColorPrint("Press any key to return.");
-        Console.ReadKey(true);
     }
 }

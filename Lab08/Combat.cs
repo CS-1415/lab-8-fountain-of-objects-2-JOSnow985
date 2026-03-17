@@ -42,8 +42,27 @@ public static class Combat   // Class for methods that handle combat interaction
 
         if (!player.IsDead)
         {
+            (var oldWeaponInfo, var oldArmorInfo) = (player.Weapon.Info, player.Armor.Info);
+            if (monster.Inventory.Count > 0)
+            {
+                Printer.ColorPrint($"\n{monster.Name} had loot:");
+                Printer.PrintInventory(monster.Inventory);
+            }
             Loot(player, monster);
             RemoveMonsterAt(monster.X, monster.Y, ref map);
+            if (player.Weapon.Info != oldWeaponInfo)
+            {
+                Printer.ColorPrint($"\nYour weapon takes a new shape!");
+                Printer.ColorPrint($"{player.Weapon.Info.Name}");
+                Printer.ColorPrint($"  {player.Weapon.Info.Description}");
+            }
+
+            if (player.Armor.Info != oldArmorInfo)
+            {
+                Printer.ColorPrint($"\nYour armor takes a new shape!");
+                Printer.ColorPrint($"{player.Armor.Info.Name}");
+                Printer.ColorPrint($"  {player.Armor.Info.Description}");
+            }
         }
         return;
     }
