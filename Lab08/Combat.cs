@@ -59,6 +59,7 @@ public static class Combat   // Class for methods that handle combat interaction
             player.Inventory.Add(item);
 
         monster.Inventory = [];
+        player.UpdateGear();
     }
     public static void RemoveMonsterAt(int x, int y, ref Map map)
     {

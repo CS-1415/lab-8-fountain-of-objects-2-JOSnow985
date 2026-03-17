@@ -45,7 +45,7 @@ public class Player
         return (atk, def);
     }
 
-    private void UpdateGear()
+    public void UpdateGear()
     {
         (int atkLevel, int defLevel) = (1, 1);
         foreach(var item in Inventory)
