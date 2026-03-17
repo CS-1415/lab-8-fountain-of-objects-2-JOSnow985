@@ -55,8 +55,10 @@ public class Wizzrobe : Monster // Maelstrom renamed to Wizzrobe for fun, telepo
             (hasTeleported, player.X, player.Y) = (true, 0, 0);
         else
             return;     // Maybe the Wizzrobe explodes if he tries teleporting the player again?
+        string Wizzrobed = "The Wizzrobe casts teleport on you! You're back at the entrance, weren't Wallmasters the ones that did that?";
 
-        player.lastAction = "The Wizzrobe casts teleport on you! You're back at the entrance, weren't Wallmasters the ones that did that?";
+        Printer.ColorPrint(Wizzrobed);
+        player.lastAction = Wizzrobed;
     }
 }
 
