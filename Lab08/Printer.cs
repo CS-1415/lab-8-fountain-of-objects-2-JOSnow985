@@ -76,4 +76,17 @@ public static class Printer
         ColorPrint("Press any key to return.");
         Console.ReadKey(true);
     }
+
+    public static void ItemMenu(List<Item> inventory)
+    {
+        Console.Clear();
+        ColorPrint("--- Your Inventory ---");
+        foreach(Item i in inventory)
+        {
+            ColorPrint($"{i.Info.Name}:");
+            ColorPrint($"    {i.Info.Description}");
+        }
+        ColorPrint("Press any key to return.");
+        Console.ReadKey(true);
+    }
 }

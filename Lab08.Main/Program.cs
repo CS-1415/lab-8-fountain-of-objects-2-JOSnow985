@@ -97,6 +97,9 @@ while (true)
         case "help":
             Printer.HelpMenu();
             break;
+        case "inventory":
+            Printer.ItemMenu(player.Inventory);
+            break;
         case "leave":
         case "exit":
         case "bail":
