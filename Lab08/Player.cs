@@ -67,15 +67,15 @@ public class Player
 
         weSenseThis.Append(CurrentRoom.Feedback);       // May be nothing, might be Gate or Fountain Room feedback
 
-        foreach (Monster monster in map.MonsterList)
-        {
-            int deltaX = Math.Abs(X - monster.X);
-            int deltaY = Math.Abs(Y - monster.Y);
-            (bool adjacentX, bool adjacentY) = (deltaX <= 1, deltaY <=1);
-            if (deltaX <= 1 && deltaY <= 1)
-                if (map.RoomData[Y][X].exits.Contains('A'))
-                weSenseThis.Append(monster.Feedback);      // If an obstacle is near, we retrieve the string for it's feedback
-        }
+        // foreach (Monster monster in map.MonsterList)
+        // {
+        //     int deltaX = Math.Abs(X - monster.X);
+        //     int deltaY = Math.Abs(Y - monster.Y);
+        //     (bool adjacentX, bool adjacentY) = (deltaX <= 1, deltaY <=1);
+        //     if ((adjacentX && !adjacentY) || (!adjacentX && adjacentY))
+        //         if (map.RoomData[Y][X].exits.Contains('A'))
+        //         weSenseThis.Append(monster.Feedback);      // If an obstacle is near, we retrieve the string for it's feedback
+        // }
 
         return weSenseThis.ToString();
     }
