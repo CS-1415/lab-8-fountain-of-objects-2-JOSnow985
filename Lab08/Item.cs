@@ -10,7 +10,7 @@ public class Upgrade : Item
 {
     private bool _forweapon;
     public bool IsForWeapon => _forweapon;
-    public override (string Name, string Description) Info => ($"Mote of {(_forweapon ? "Power" : "Defense")}", $"A small speck of shimmering data, having it in your inventory is making your {(_forweapon ? "weapon" : "armor")} stronger.");
+    public override (string Name, string Description) Info => ($"Mote of {(_forweapon ? "Power" : "Defense")}", $"A shimmering speck, it's making your {(_forweapon ? "weapon" : "armor")} stronger.");
     public Upgrade(bool isWeaponUpgrade) => _forweapon = isWeaponUpgrade;
     public static Upgrade Weapon = new(true);
     public static Upgrade Armor = new(false);

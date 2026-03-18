@@ -34,7 +34,7 @@ while (true)
 
 Player player = new(map);
 
-Printer.OpeningCrawl();
+Printer.PrintList(Printer.openingLines);
 Console.ReadKey(true);
 
 while (true)
@@ -82,7 +82,8 @@ while (true)
             break;
         case ConsoleKey.H:
         case ConsoleKey.F1:
-            Printer.HelpMenu();
+            Printer.PrintList(Printer.helpLines);
+            Console.ReadKey(true);
             break;
         case ConsoleKey.I:
         case ConsoleKey.Tab:

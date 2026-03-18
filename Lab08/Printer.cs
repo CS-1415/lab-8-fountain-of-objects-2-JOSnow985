@@ -4,10 +4,36 @@ public static class Printer
 {
     public static readonly string wallBonk = "You bump into a wall of the cavern, you can't go that way.";
     public static readonly List<string> blueWords = ["fountain", "rushing", "dripping", "activate", "enable"];
-    public static readonly List<string> yellowWords = ["sunlit", "light", "derezzing"];
-    public static readonly List<string> redWords = ["amarok", "maelstrom", "pit", "pits", "died", "died.", "deactivated", "why?", "rotten", "stench", "growling", "groaning", "fire", "darkness", "draft", "dangers"];
+    public static readonly List<string> yellowWords = ["sunlit", "light", "derezzing", "inventory", "player", "power", "defense"];
+    public static readonly List<string> redWords = ["wizzrobe", "wizzrobes", "rodent", "rodents", "r.o.u.s.", "\"elite\"", "knight", "knights", "drgn", "dangers"];
     public static readonly List<string> magentaWords = ["north", "east", "south", "west", "walk", "bump", "feel", "hear", "smell", "see"];
-    public static readonly List<string> cyanWords = ["you", "small", "medium", "large", "commands", "shoot", "press", "help"];
+    public static readonly List<string> cyanWords = ["small", "medium", "large", "commands", "press", "help"];
+    public static readonly List<string> openingLines = [
+        "You descend into the Cavern of Objects in search of the Fountain of Objects.",
+        "A maze with dangerous enemies awaits you.",
+        "You have a dull sword and a locket, these items can be upgraded with motes of power from enemies.",
+        "Find the Fountain of Objects, activate it, and return to the entrance.",
+        "\nYou can always press [H] to see a help menu!!\n",
+        "--- Dangers ---",
+        "Drgn - Dangerous, fire breathing, scaly enemies that love BBQ'ing unprepared adventurers!",
+        "\"Elite\" Knights - Heavily armored enemies, nobody knows what they look like under the armor.",
+        "Rodents - Unusually large for rodents, they love to inhabit caverns and attack adventurers.",
+        "Wizzrobes - Mages driven insane by calculating complex teleportation spells, they're relatively weak but they can teleport you back to the entrance of the cavern.",
+        "\nPress any key to begin!"
+    ];
+    public static readonly List<string> helpLines = [
+        "--- Commands ---",
+        "[ Arrow Keys ] or [ W / A / S / D ]: Attempt to walk that direction.",
+        "[ E / Enter ] : Attempt to activate the Fountain of Objects.",
+        "[ H / F1 ]  : Open this help menu!",
+        "[ I / Tab ] : Open your inventory.",
+        "\n--- Dangers ---",
+        "Drgn - Dangerous, fire breathing, scaly enemies that love BBQ'ing unprepared adventurers!",
+        "\"Elite\" Knights - Heavily armored enemies, nobody knows what they look like under the armor.",
+        "Rodents - Unusually large for rodents, they love to inhabit caverns and attack adventurers.",
+        "Wizzrobes - Mages driven insane by calculating complex teleportation spells, they're relatively weak but they can teleport you back to the entrance of the cavern.",
+        "\nPress any key to return."
+    ];
     public static void MapSelect()
     {
         Console.Clear();
@@ -47,34 +73,11 @@ public static class Printer
         }
         Console.Write("\n");    //Finally, next line
     }
-    public static void OpeningCrawl()
+    public static void PrintList(List<string> lines)
     {
         Console.Clear();
-        ColorPrint("You descend into the Cavern of Objects, a maze of rooms with dangerous pits in search of the Fountain of Objects.");
-        ColorPrint("Light is visible only here, in the entrance, a roiling wall of darkness covers the passage to the rest of the cavern.");
-        ColorPrint("You must navigate the Cavern with your other senses.");
-        ColorPrint("Find the Fountain of Objects and activate it, then return to the entrance.");
-        Console.Write("\nRemember you can use ");
-        ColorPrint("help to see the controls!\n");
-        ColorPrint("--- Dangers ---\n");
-        ColorPrint("Pits in the cavern pull you in to a certain death, but you will feel a draft from nearby rooms.");
-        ColorPrint("The Maelstrom are violent forces of sentient wind, they will teleport you somewhere else in the caverns. You will be able to hear their growling and groaning from nearby rooms.");
-        ColorPrint("Amarok roam the caverns. Encountering one is certain death, but you can smell their rotten stench from nearby rooms.");
-        ColorPrint("You carry a bow and a quiver of arrows. You can use them to shoot Amarok or Maelstrom in the caverns but be warned: you have a limited supply.");
-        Console.WriteLine();
-        ColorPrint("Press any key to begin!");
-    }
-
-    public static void HelpMenu()
-    {
-        Console.Clear();
-        ColorPrint("--- Commands ---");
-        ColorPrint("North / East / South / West : Attempt to walk that direction.");
-        ColorPrint("Activate : Attempt to activate the Fountain of Objects.");
-        ColorPrint("Fire <Direction>: Attempt to fire your bow in a direction (only North, East, South, West!).");
-        Console.WriteLine();
-        ColorPrint("Press any key to return.");
-        Console.ReadKey(true);
+        foreach (string line in lines)
+            ColorPrint(line);
     }
 
     public static void ItemMenu(List<Item> inventory)

@@ -4,6 +4,8 @@ public static class Combat   // Class for methods that handle combat interaction
 {
     public static void CombatLoop(Player player, Monster monster, ref Map map)
     {
+        Console.Clear();
+
         if (monster.hasSpecAtk)
             if (Monster.rng.Next(1,101) > 80)
             {
@@ -13,10 +15,9 @@ public static class Combat   // Class for methods that handle combat interaction
                     return;
             }
 
-        Console.Clear();
         Printer.ColorPrint("--- Combat Encounter ---");
         Printer.ColorPrint($"--- Player vs {monster.Name} ---");
-        Printer.ColorPrint($"--- HP: {player.Health} vs HP: {monster.Health} ---");
+        Printer.ColorPrint($"--- HP: {player.Health} vs HP: {monster.Health} ---\n");
         Printer.ColorPrint(monster.Feedback);
         Thread.Sleep(1000);
         Console.WriteLine();
@@ -35,31 +36,31 @@ public static class Combat   // Class for methods that handle combat interaction
         }
 
         if (player.Health <= 0)
-            Printer.ColorPrint("Player has died!");
+            Printer.ColorPrint("Player has died!\n");
 
         if(monster.Health <= 0)
-            Printer.ColorPrint($"{monster.Name} has died!");
+            Printer.ColorPrint($"{monster.Name} has died!\n");
 
         if (!player.IsDead)
         {
             (var oldWeaponInfo, var oldArmorInfo) = (player.Weapon.Info, player.Armor.Info);
             if (monster.Inventory.Count > 0)
             {
-                Printer.ColorPrint($"\n{monster.Name} had loot:");
+                Printer.ColorPrint($"{monster.Name} had loot:");
                 Printer.PrintInventory(monster.Inventory);
             }
             Loot(player, monster);
             RemoveMonsterAt(monster.X, monster.Y, ref map);
             if (player.Weapon.Info != oldWeaponInfo)
             {
-                Printer.ColorPrint($"\nYour weapon takes a new shape!");
+                Printer.ColorPrint($"\nYour weapon takes a new shape, it's now level {player.Weapon.Level}!");
                 Printer.ColorPrint($"{player.Weapon.Info.Name}");
                 Printer.ColorPrint($"  {player.Weapon.Info.Description}");
             }
 
             if (player.Armor.Info != oldArmorInfo)
             {
-                Printer.ColorPrint($"\nYour armor takes a new shape!");
+                Printer.ColorPrint($"\nYour armor takes a new shape, it's now level {player.Armor.Level}!");
                 Printer.ColorPrint($"{player.Armor.Info.Name}");
                 Printer.ColorPrint($"  {player.Armor.Info.Description}");
             }
