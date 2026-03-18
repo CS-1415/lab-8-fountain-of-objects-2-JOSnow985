@@ -4,9 +4,9 @@ public static class Printer
 {
     public static readonly string wallBonk = "You bump into a wall of the cavern, you can't go that way.";
     public static readonly List<string> blueWords = ["fountain", "rushing", "dripping", "activate", "enable"];
-    public static readonly List<string> yellowWords = ["sunlit", "light", "derezzing", "inventory", "player", "power", "defense"];
-    public static readonly List<string> redWords = ["wizzrobe", "wizzrobes", "rodent", "rodents", "r.o.u.s.", "\"elite\"", "knight", "knights", "drgn", "dangers"];
-    public static readonly List<string> magentaWords = ["north", "east", "south", "west", "walk", "bump", "feel", "hear", "smell", "see"];
+    public static readonly List<string> yellowWords = ["sunlit", "light", "mote", "shimmering", "inventory", "player", "power", "defense"];
+    public static readonly List<string> redWords = ["wizzrobe", "wizzrobes", "rodent", "rodents", "r.o.u.s.", "\"elite\"", "elite", "knight", "knights", "drgn", "dangers", "100"];
+    public static readonly List<string> magentaWords = ["north", "east", "south", "west", "walk", "bump", "feel", "hear", "smell", "see", "hp:"];
     public static readonly List<string> cyanWords = ["small", "medium", "large", "commands", "press", "help"];
     public static readonly List<string> openingLines = [
         "You descend into the Cavern of Objects in search of the Fountain of Objects.",
@@ -93,8 +93,8 @@ public static class Printer
     {
         foreach (Item i in inventory)
         {
-            ColorPrint($"{i.Info.Name}:");
-            ColorPrint($"    {i.Info.Description}");
+            ColorPrint($"{i.Info.Name} -");
+            ColorPrint($"    {i.Info.Description} \n");
         }
     }
 }

@@ -64,7 +64,7 @@ public class Wizzrobe : Monster // Maelstrom renamed to Wizzrobe for fun, telepo
 
 public class Soldier : Monster
 {
-    public Soldier(int x, int y) : base("Elite Knight", x, y, "The loud clattering of metal armor means an \"Elite\" Knight is near.")
+    public Soldier(int x, int y) : base("\"Elite\" Knight", x, y, "The loud clattering of metal armor means an \"Elite\" Knight is near.")
     {
         Health = 5;
         MonStats = (5,3);

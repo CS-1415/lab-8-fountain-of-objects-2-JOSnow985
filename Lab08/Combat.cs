@@ -31,7 +31,7 @@ public static class Combat   // Class for methods that handle combat interaction
             Thread.Sleep(500);
 
             if (originalPlayerHealth != player.Health)
-                Printer.ColorPrint($"{monster.Name} attacked Player for {originalPlayerHealth - player.Health}!");
+                Printer.ColorPrint($"{monster.Name} attacked Player for {originalPlayerHealth - player.Health}! \n");
             Thread.Sleep(500);  // Combat's not instant...
         }
 
@@ -53,14 +53,14 @@ public static class Combat   // Class for methods that handle combat interaction
             RemoveMonsterAt(monster.X, monster.Y, ref map);
             if (player.Weapon.Info != oldWeaponInfo)
             {
-                Printer.ColorPrint($"\nYour weapon takes a new shape, it's now level {player.Weapon.Level}!");
+                Printer.ColorPrint($"\nYour weapon takes a new shape, it's now level {player.Weapon.Level}!\n");
                 Printer.ColorPrint($"{player.Weapon.Info.Name}");
                 Printer.ColorPrint($"  {player.Weapon.Info.Description}");
             }
 
             if (player.Armor.Info != oldArmorInfo)
             {
-                Printer.ColorPrint($"\nYour armor takes a new shape, it's now level {player.Armor.Level}!");
+                Printer.ColorPrint($"\nYour armor takes a new shape, it's now level {player.Armor.Level}!\n");
                 Printer.ColorPrint($"{player.Armor.Info.Name}");
                 Printer.ColorPrint($"  {player.Armor.Info.Description}");
             }

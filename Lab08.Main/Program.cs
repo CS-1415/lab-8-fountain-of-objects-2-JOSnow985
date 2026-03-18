@@ -102,6 +102,7 @@ while (true)
         if (player.X == monster.X && player.Y == monster.Y)
         {
             Combat.CombatLoop(player, monster, ref map);
+            Console.WriteLine();
             Printer.ColorPrint("Combat has concluded, press any key to continue.");
             Console.ReadKey();
             break;
