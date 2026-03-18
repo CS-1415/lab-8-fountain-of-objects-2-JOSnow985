@@ -44,48 +44,34 @@ while (true)
 
     Printer.ColorPrint(player.lastAction);
 
-    Printer.ColorPrint(player.Sense());
+    Printer.ColorPrint(player.Sense(ref map));
 
     Console.WriteLine("\nWhat's your next move?");
-
-    // Player input will be Cyan
-    Console.ForegroundColor = ConsoleColor.Cyan;
-    switch (Console.ReadLine()?.ToLowerInvariant())
+    switch (Console.ReadKey(true).Key)
     {
-        case "walk north":
-        case "move north":
-        case "north":
-        case "n":
-        case "up":
+        case ConsoleKey.W:
+        case ConsoleKey.UpArrow:
+        case ConsoleKey.NumPad2:
             player.lastAction = player.Move('N') ? "You walk to the North..." : Printer.wallBonk;
             break;
-        case "walk east":
-        case "move east":
-        case "east":
-        case "e":
-        case "right":
+        case ConsoleKey.D:
+        case ConsoleKey.RightArrow:
+        case ConsoleKey.NumPad6:
             player.lastAction = player.Move('E') ? "You walk to the East..." : Printer.wallBonk;
             break;
-        case "walk south":
-        case "move south":
-        case "south":
-        case "s":
-        case "down":
+        case ConsoleKey.S:
+        case ConsoleKey.DownArrow:
+        case ConsoleKey.NumPad8:
             player.lastAction = player.Move('S') ? "You walk to the South..." : Printer.wallBonk;
             break;
-        case "walk west":
-        case "move west":
-        case "west":
-        case "w":
-        case "left":
+        case ConsoleKey.A:
+        case ConsoleKey.LeftArrow:
+        case ConsoleKey.NumPad4:
             player.lastAction = player.Move('W') ? "You walk to the West..." : Printer.wallBonk;
             break;
-        case "enable":
-        case "toggle":
-        case "turn on":
-        case "activate":
-        case "use":
-        case "fountain":
+        case ConsoleKey.E:
+        case ConsoleKey.Enter:
+        case ConsoleKey.NumPad5:
             if (player.CurrentRoom is FountainRoom)
             {
                 Map.Fountain.ToggleFountain();
@@ -94,31 +80,17 @@ while (true)
             else
                 player.lastAction = "There's nothing to enable here...";
             break;
-        case "help":
+        case ConsoleKey.H:
+        case ConsoleKey.F1:
             Printer.HelpMenu();
             break;
-        case "inventory":
+        case ConsoleKey.I:
+        case ConsoleKey.Tab:
             Printer.ItemMenu(player.Inventory);
             break;
-        case "leave":
-        case "exit":
-        case "bail":
-        case "quit":
-            if (player.CurrentRoom is GateRoom)
-            {
-                Console.Clear();
-                Printer.ColorPrint("You decide this is too much and ascend out of the Cavern of Objects. The Uncoded One will probably win now. Nice.");
-                return;
-            }
-            else
-                player.lastAction = "You can't leave unless you're at the entrance...";
-            break;
         default:
-            player.lastAction = "The Rules of the Cavern prevent you from doing... that.";
             break;
     }
-    // Return text color to white just in case
-    Console.ForegroundColor = ConsoleColor.White;
 
     // Check if we've won first
     if (player.CurrentRoom is GateRoom && Map.Fountain.IsFountainEnabled)
