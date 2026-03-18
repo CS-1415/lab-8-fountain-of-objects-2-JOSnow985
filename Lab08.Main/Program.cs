@@ -1,4 +1,4 @@
-﻿// Jaden Olvera     CS-1410    Fountain of Objects for HW:23
+﻿// Jaden Olvera, CS-1415, Lab 8 Fountain of Objects
 using Lab08;
 
 Printer.MapSelect();

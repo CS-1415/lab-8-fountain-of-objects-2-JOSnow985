@@ -1,6 +1,6 @@
 ﻿namespace Lab08;
 
-public static class Combat   // Class for methods that handle combat interactions
+public static class Combat
 {
     public static void CombatLoop(Player player, Monster monster, ref Map map)
     {
@@ -19,7 +19,7 @@ public static class Combat   // Class for methods that handle combat interaction
         Printer.ColorPrint($"--- Player vs {monster.Name} ---");
         Printer.ColorPrint($"--- HP: {player.Health} vs HP: {monster.Health} ---\n");
         Printer.ColorPrint(monster.Feedback);
-        Thread.Sleep(1000);
+        Thread.Sleep(750);
         Console.WriteLine();
 
         while (player.Health > 0 && monster.Health > 0)
@@ -32,7 +32,7 @@ public static class Combat   // Class for methods that handle combat interaction
 
             if (originalPlayerHealth != player.Health)
                 Printer.ColorPrint($"{monster.Name} attacked Player for {originalPlayerHealth - player.Health}! \n");
-            Thread.Sleep(500);  // Combat's not instant...
+            Thread.Sleep(500);  // Combat's not instant
         }
 
         if (player.Health <= 0)

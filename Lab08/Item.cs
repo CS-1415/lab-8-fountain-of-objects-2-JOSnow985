@@ -1,6 +1,6 @@
 ﻿namespace Lab08;
 
-public abstract class Item   // Basic Item
+public abstract class Item
 {
     public int Level = 1;
     public abstract (string Name, string Description) Info {get;}

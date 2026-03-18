@@ -28,10 +28,10 @@ public abstract class Monster
         for (int i = Health; i > 0; i--)        // One loot roll per monster hp, probably poorly balanced
         {
             int roll = rng.Next(1, 101);
-            if (roll >= 75)
-                itemList.Add(Upgrade.Weapon);   // 25% chance to add a weapon upgrade
-            else if (roll <= 25)
-                itemList.Add(Upgrade.Armor);    // 25% chance to add an armor upgrade
+            if (roll >= 90)
+                itemList.Add(Upgrade.Weapon);   // 10% chance to add a weapon upgrade
+            else if (roll <= 10)
+                itemList.Add(Upgrade.Armor);    // 10% chance to add an armor upgrade
         }
 
         return itemList;

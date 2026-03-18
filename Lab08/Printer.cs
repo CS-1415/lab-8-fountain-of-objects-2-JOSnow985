@@ -2,6 +2,7 @@
 
 public static class Printer
 {
+    // I don't like all these public static strings, probably better to read from a file
     public static readonly string wallBonk = "You bump into a wall of the cavern, you can't go that way.";
     public static readonly List<string> blueWords = ["fountain", "rushing", "dripping", "activate", "enable"];
     public static readonly List<string> yellowWords = ["sunlit", "light", "mote", "shimmering", "inventory", "player", "power", "defense"];

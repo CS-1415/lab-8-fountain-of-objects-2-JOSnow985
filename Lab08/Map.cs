@@ -25,7 +25,7 @@ public class Map
         {
             foreach (var column in exits)           // Next is X
             {
-                if (Monster.rng.Next(1, 101) >= 75) // 25% chance for a monster to be placed
+                if (Monster.rng.Next(1, 101) >= 70) // 30% chance for a monster to be placed
                     monsters.Add(RandomMonsterAt(X, Y));
                 X++;
             }
@@ -38,18 +38,17 @@ public class Map
     // Returns a monster spawned at the passed x, y
     private Monster RandomMonsterAt(int x, int y)
     {
-        // RoomData[y][x] = (RoomData[y][x].exits, false, RoomData[y][x].IsVisited);
         UpdateRoomDataAt(x, y);
         return Monster.rng.Next(1, 101) switch
         {
-            var roll when roll <= 15 => Wizzrobe.At(x, y),                  // 15%
-            var roll when 15 < roll && roll <= 35 => Soldier.At(x, y),      // 20%
-            var roll when 35 < roll && roll <= 40 => Drgn.At(x, y),         // 5%
-            _ => Rodent.At(x, y)                                            // Remaining 60%
+            var roll when roll <= 20 => Wizzrobe.At(x, y),                  // 20%
+            var roll when 20 < roll && roll <= 45 => Soldier.At(x, y),      // 25%
+            var roll when 45 < roll && roll <= 55 => Drgn.At(x, y),         // 10%
+            _ => Rodent.At(x, y)                                            // Remaining 45%
         };
     }
 
-    // Updates RoomData at a passed x, y, only IsClear now but could be extended
+    // Updates RoomData at a passed x, y, only sets IsClear but could be extended
     public void UpdateRoomDataAt(int x, int y, bool _isclear = false) => RoomData[y][x] = (RoomData[y][x].exits, _isclear, RoomData[y][x].IsVisited);
     private List<List<(string exits, bool IsClear, bool IsVisited)>> AddRoomTags(List<List<string>> exits)
     {   // Iterates through the exit list from the map and makes a new list of tuples
@@ -72,7 +71,7 @@ public class Map
     public static FountainRoom Fountain { get; } = new();
     public static Room EmptyRoom { get; } = new();
 
-    // Small maps are 4x4, have 1 Amarok, 1 Maelstrom, 1 Pit
+    // Small maps are 4x4
     private static (List<List<string>> exits, List<(Room, int x, int y)> rooms) smallMap = (
     [
         ["S",   "ES",   "EW",   "SW"],
@@ -82,7 +81,7 @@ public class Map
     ],
     [ (Entrance, 0, 0), (Fountain, 2, 0) ]
     );
-    // Medium maps are 6x6, have 2 Amaroks, 1 Maelstrom, 2 Pits
+    // Medium maps are 6x6
     private static (List<List<string>> exits, List<(Room, int x, int y)> rooms) mediumMap = (
     [
         ["E",   "EW",   "EW",   "ESW",  "EW",   "SW"],
@@ -95,7 +94,7 @@ public class Map
     [ (Entrance, 0, 0), (Fountain, 5, 5) ]
     );
 
-    // Large maps are 8x8, have 3 Amaroks, 2 Maelstroms, 4 Pits
+    // Large maps are 8x8
     private static (List<List<string>> exits, List<(Room, int x, int y)> rooms) largeMap = (
     [
         ["S",   "ES",   "EW",   "EW",   "SW",   "ES",   "W",    "S"],

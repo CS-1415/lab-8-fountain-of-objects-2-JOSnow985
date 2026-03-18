@@ -61,21 +61,11 @@ public class Player
         (Weapon.Level, Armor.Level) = (atkLevel, defLevel);
     }
 
-    public string Sense(ref Map map)        // Returns a string based on where the player is and what they're close to
+    public string Sense(ref Map map)        // Returns a string based on where the player is
     {
         StringBuilder weSenseThis = new();
 
         weSenseThis.Append(CurrentRoom.Feedback);       // May be nothing, might be Gate or Fountain Room feedback
-
-        // foreach (Monster monster in map.MonsterList)
-        // {
-        //     int deltaX = Math.Abs(X - monster.X);
-        //     int deltaY = Math.Abs(Y - monster.Y);
-        //     (bool adjacentX, bool adjacentY) = (deltaX <= 1, deltaY <=1);
-        //     if ((adjacentX && !adjacentY) || (!adjacentX && adjacentY))
-        //         if (map.RoomData[Y][X].exits.Contains('A'))
-        //         weSenseThis.Append(monster.Feedback);      // If an obstacle is near, we retrieve the string for it's feedback
-        // }
 
         return weSenseThis.ToString();
     }
