@@ -34,18 +34,18 @@ while (true)
 
 Player player = new(map);
 
+Console.Clear();
 Printer.PrintList(Printer.openingLines);
+Console.WriteLine();
+Printer.PrintList(Printer.helpLines);
+Printer.ColorPrint("\nPress any key to begin!");
 Console.ReadKey(true);
 
 while (true)
 {
     Console.Clear();
-    Console.WriteLine($"Currently at: ({player.X},{player.Y}) | HP: {player.Health} |  Exits sensed: ({map.RoomData[player.Y][player.X].exits})");
 
-    Printer.ColorPrint(player.lastAction);
-
-    Printer.ColorPrint(player.Sense(ref map));
-
+    Printer.PrintUI(ref map, ref player);
     Console.WriteLine("\nWhat's your next move?");
     switch (Console.ReadKey(true).Key)
     {
@@ -82,7 +82,9 @@ while (true)
             break;
         case ConsoleKey.H:
         case ConsoleKey.F1:
+            Console.Clear();
             Printer.PrintList(Printer.helpLines);
+            Printer.ColorPrint("\nPress any key to return.");
             Console.ReadKey(true);
             break;
         case ConsoleKey.I:

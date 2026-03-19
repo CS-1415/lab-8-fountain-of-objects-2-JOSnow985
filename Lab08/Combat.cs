@@ -83,7 +83,7 @@ public static class Combat
     }
     public static void RemoveMonsterAt(int x, int y, ref Map map)
     {
-        map.UpdateRoomDataAt(x, y, true);
+        map.UpdateRoomClearedAt(x, y, _isclear: true);
         map.MonsterList.RemoveAll(mon => mon.X == x && mon.Y == y);
     }
 }

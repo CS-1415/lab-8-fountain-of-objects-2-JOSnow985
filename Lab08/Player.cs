@@ -8,6 +8,7 @@ public class Player
     private readonly Map Map;
     public int X = 0;
     public int Y = 0;
+    public string CurrentExits => Map.RoomData[Y][X].exits;
     public int Health = 50;
     public bool IsDead => Health <= 0;
     public (int Attack, int Defense) GearStats => CheckHighestGear();
@@ -24,6 +25,7 @@ public class Player
         Map = selectedMap;
         Inventory.Add(Weapon);
         Inventory.Add(Armor);
+        Map.UpdateRoomVisitedAt(0, 0, _isvisited: true);
     }
 
     private (int, int) CheckHighestGear()
@@ -64,8 +66,18 @@ public class Player
     public string Sense(ref Map map)        // Returns a string based on where the player is
     {
         StringBuilder weSenseThis = new();
+        if (!string.IsNullOrEmpty(CurrentRoom.Feedback))
+            weSenseThis.Append($"{CurrentRoom.Feedback} \n");
 
-        weSenseThis.Append(CurrentRoom.Feedback);       // May be nothing, might be Gate or Fountain Room feedback
+        foreach (var (direction, deltaX, deltaY) in Map.cardinals)
+            if (CurrentExits.Contains(direction[0])) // Use the first letter in the direction's name, N E S W
+            {
+                Monster? monster = map.MonsterList.FirstOrDefault(monster => (monster.X, monster.Y) == (X + deltaX, Y + deltaY));
+                if (monster is not null)
+                {
+                    weSenseThis.Append($"From the {direction} - {monster.Feedback} \n");
+                }
+            }
 
         return weSenseThis.ToString();
     }
@@ -80,19 +92,21 @@ public class Player
             {
                 case 'N':
                     Y--;
-                    return true;
+                    break;
                 case 'E':
                     X++;
-                    return true;
+                    break;
                 case 'S':
                     Y++;
-                    return true;
+                    break;
                 case 'W':
                     X--;
-                    return true;
+                    break;
                 default:
                     return false;
             }
+            Map.UpdateRoomVisitedAt(X, Y, _isvisited: true);
+            return true;
         }
     }
 }

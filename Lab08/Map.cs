@@ -38,7 +38,7 @@ public class Map
     // Returns a monster spawned at the passed x, y
     private Monster RandomMonsterAt(int x, int y)
     {
-        UpdateRoomDataAt(x, y);
+        UpdateRoomClearedAt(x, y);
         return Monster.rng.Next(1, 101) switch
         {
             var roll when roll <= 20 => Wizzrobe.At(x, y),                  // 20%
@@ -48,8 +48,9 @@ public class Map
         };
     }
 
-    // Updates RoomData at a passed x, y, only sets IsClear but could be extended
-    public void UpdateRoomDataAt(int x, int y, bool _isclear = false) => RoomData[y][x] = (RoomData[y][x].exits, _isclear, RoomData[y][x].IsVisited);
+    // Updates RoomData at a passed x
+    public void UpdateRoomClearedAt(int x, int y, bool _isclear = false) => RoomData[y][x] = (RoomData[y][x].exits, _isclear, RoomData[y][x].IsVisited);
+    public void UpdateRoomVisitedAt(int x, int y, bool _isvisited = false) => RoomData[y][x] = (RoomData[y][x].exits, RoomData[y][x].IsClear, _isvisited);
     private List<List<(string exits, bool IsClear, bool IsVisited)>> AddRoomTags(List<List<string>> exits)
     {   // Iterates through the exit list from the map and makes a new list of tuples
         // the exits and two flags that indicate if it's been visited and if a monster is there or not.
@@ -98,7 +99,7 @@ public class Map
     private static (List<List<string>> exits, List<(Room, int x, int y)> rooms) largeMap = (
     [
         ["S",   "ES",   "EW",   "EW",   "SW",   "ES",   "W",    "S"],
-        ["NE",  "NW",   "ES",   "EW",   "NSW",  "NEW",  "EW",   "NSW"],
+        ["NE",  "NW",   "ES",   "EW",   "NSW",  "NES",  "EW",   "NSW"],
         ["ES",  "EW",   "NEW",  "SW",   "NS",   "NE",   "SW",   "NS"],
         ["NS",  "E",    "EW",   "NW",   "NES",  "EW",   "NESW", "NW"],
         ["NES", "EW",   "EW",   "ESW",  "NW",   "S",    "NES",  "SW"],
@@ -108,4 +109,13 @@ public class Map
     ],
     [ (Entrance, 0, 0), (Fountain, 5, 4) ]
     );
+
+    // Directions and offsets for X and Y based on those directions
+    public static readonly (string direction, int deltaX, int deltaY)[] cardinals =
+        [
+            ("North", 0,-1),
+            ("East",  1, 0),
+            ("South", 0, 1),
+            ("West", -1, 0)
+        ];
 }
