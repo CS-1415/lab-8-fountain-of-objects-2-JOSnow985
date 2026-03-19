@@ -16,7 +16,7 @@ public static class Printer
     public static readonly List<string> openingLines = [
         "You descend into the Cavern of Objects in search of the Fountain of Objects.",
         "A maze with dangerous enemies awaits you.",
-        "You have a dull sword and a locket, these items can be upgraded with motes of power from enemies.",
+        "You have a sharp fork and a locket, these items can be upgraded with motes of power from enemies.",
         "Find the Fountain of Objects, activate it, and return to the entrance."
     ];
     public static readonly List<string> helpLines = [
