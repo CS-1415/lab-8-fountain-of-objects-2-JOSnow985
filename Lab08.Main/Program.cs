@@ -105,8 +105,11 @@ while (true)
         {
             Combat.CombatLoop(player, monster, ref map);
             Console.WriteLine();
-            Printer.ColorPrint("Combat has concluded, press any key to continue.");
-            Console.ReadKey();
+            if (!player.IsDead)
+            {
+                Printer.ColorPrint("Combat has concluded, press any key to continue.");
+                Console.ReadKey();
+            }
             break;
         }
     }
@@ -117,5 +120,12 @@ while (true)
 if (!player.IsDead)
 {
     Console.Clear();
-    Printer.ColorPrint("You've done it! The Fountain of Objects has been activated and you've escaped with your life! Good job!");
+    Printer.ColorPrint("You've done it! The Fountain of Objects has been activated and you've escaped with your life! Consolas will prosper with objects now!");
+}
+else
+{
+    Console.Clear();
+    Console.WriteLine("Your journey has ended and you're surrounded by darkness... Wait, you see a light ahead!");
+    Printer.ColorPrint("You hear a gruff voice from the light, \"Hey, you, you're finally awake...\"");
+    Printer.ColorPrint("Maybe you should just go back to Consolas...");
 }
