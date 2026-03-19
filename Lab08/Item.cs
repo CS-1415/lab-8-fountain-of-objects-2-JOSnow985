@@ -26,7 +26,7 @@ public class Weapon : Item
         {
             return Level switch
             {
-                1 => ("Dull Sword", "An old, dull sword. Better than nothing"),
+                1 => ("Fork of Horror", "It's just a fork, but it's a sharp fork."),
                 2 => ("Broken Giant's Knife", "A giant's knife that somebody already broke, you could get it fixed but there's no time for a trading quest right now."),
                 3 => ("Z Sword", "An extremely heavy sword. It doesn't seem to be very good, but you don't think Old Kai is going to appear if you break it."),
                 4 => ("Razor Sword", "A sword with a fancy split design, good thing this isn't Termina or it would go dull after 100 strikes."),
