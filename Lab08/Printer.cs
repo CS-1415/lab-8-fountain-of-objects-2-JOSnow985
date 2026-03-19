@@ -9,6 +9,10 @@ public static class Printer
     public static readonly List<string> redWords = ["wizzrobe", "wizzrobes", "rodent", "rodents", "r.o.u.s.", "\"elite\"", "elite", "knight", "knights", "drgn", "dangers", "100", "flame"];
     public static readonly List<string> magentaWords = ["north", "east", "south", "west", "walk", "bump", "feel", "hear", "smell", "see", "hp:"];
     public static readonly List<string> cyanWords = ["small", "medium", "large", "commands", "press", "help"];
+    public static readonly List<string> greenWords = [
+        "z", "sword", "fork", "horror", "broken", "giant's", "knife", "galaxy", "sword", "super", "shotgun", 
+        "saint's", "locket", "running", "shoes", "blue", "mail", "duster", "mirror", "shield", "abyssal"
+        ];
     public static readonly List<string> openingLines = [
         "You descend into the Cavern of Objects in search of the Fountain of Objects.",
         "A maze with dangerous enemies awaits you.",
@@ -60,6 +64,8 @@ public static class Printer
                 Console.ForegroundColor = ConsoleColor.Magenta;
             else if (cyanWords.Contains(lowerWord))
                 Console.ForegroundColor = ConsoleColor.Cyan;
+            else if (greenWords.Contains(lowerWord))
+                Console.ForegroundColor = ConsoleColor.Green;
 
             Console.Write($"{printWord} ");
             Console.ForegroundColor = ConsoleColor.White;   // always return color to white!

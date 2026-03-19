@@ -13,7 +13,7 @@ public class Room   // Basic room is "Empty", used as a basis for other rooms
 
 public class GateRoom : Room        // Entrance and Exit room
 {
-    public GateRoom() : base("You can see the sunlit entrance to the cavern, a roiling wall of darkness covers the only passage further. ") {}
+    public GateRoom() : base("You can see the sunlit entrance to the cavern.") {}
 }
 
 public class FountainRoom : Room
